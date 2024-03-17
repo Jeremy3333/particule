@@ -7,7 +7,7 @@
 
 void Controller::draw() const{
     vue_.drawBackground(0, 0, 0, 255);
-    int nbParticules = model_.getParticleCount();
+    const int nbParticules = model_.getParticleCount();
     for (int i = 0; i < nbParticules; i++) {
         float x, y;
         model_.getParticlePosition(i, x, y);
