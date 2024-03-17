@@ -5,11 +5,13 @@
 #ifndef SDL_CONST_H
 #define SDL_CONST_H
 
+#include "../Controller/Controller_const.h"
+
 #define SDL_EXIT_ERROR 1
 
 #define SDL_WINDOW_TITLE "Particules"
-#define SDL_WINDOW_WIDTH 640
-#define SDL_WINDOW_HEIGHT 480
+#define SDL_WINDOW_WIDTH GENERAL_WIDTH
+#define SDL_WINDOW_HEIGHT GENERAL_HEIGHT
 
 #define SDL_RENDERER_INDEX (-1)
 
