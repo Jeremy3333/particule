@@ -15,5 +15,13 @@ add_executable(particule main.cpp
         Model/Model.h
         Vue/Vue.cpp
         Vue/Vue.h
-        Vue/SDL_const.h)
+        Vue/SDL_const.h
+        Controller/Controller_const.h
+        Model/Model_const.h
+        Model/Objects/World.cpp
+        Model/Objects/World.h
+        Model/Objects/Particle.cpp
+        Model/Objects/Particle.h
+        Model/Utils/Vector2f.cpp
+        Model/Utils/Vector2f.h)
 target_link_libraries(particule ${SDL2_LIBRARIES})
