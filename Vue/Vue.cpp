@@ -31,3 +31,43 @@ Vue::~Vue() {
     SDL_DestroyWindow(sdl_window_);
     SDL_Quit();
 }
+
+void Vue::drawBackground(const int r, const int g, const int b, const int a) const {
+    SDL_SetRenderDrawColor(sdl_renderer_, r, g, b, a);
+    SDL_RenderClear(sdl_renderer_);
+}
+
+void Vue::drawParticule(const float x, const float y, const float radius, const int r, const int g, const int b, const int a) const{
+    SDL_SetRenderDrawColor(sdl_renderer_, r, g, b, a);
+    fillCircle(x, y, radius);
+}
+
+void Vue::Render() const{
+    SDL_RenderPresent(sdl_renderer_);
+}
+
+void Vue::fillCircle(const float x, const float y, const float r) const {
+    int cx = static_cast<int>(r);
+    int cy = 0;
+    int radiusError = 1 - cx;
+
+    while (cx >= cy) {
+        for (int i = static_cast<int>(x) - cx; i <= static_cast<int>(x) + cx; i++) {
+            SDL_RenderDrawPoint(sdl_renderer_, i, static_cast<int>(y) + cy);
+            SDL_RenderDrawPoint(sdl_renderer_, i, static_cast<int>(y) - cy);
+        }
+        for (int i = static_cast<int>(x) - cy; i <= static_cast<int>(x) + cy; i++) {
+            SDL_RenderDrawPoint(sdl_renderer_, i, static_cast<int>(y) + cx);
+            SDL_RenderDrawPoint(sdl_renderer_, i, static_cast<int>(y) - cx);
+        }
+
+        cy++;
+
+        if (radiusError < 0) {
+            radiusError += 2 * cy + 1;
+        } else {
+            cx--;
+            radiusError += 2 * (cy - cx + 1);
+        }
+    }
+}
