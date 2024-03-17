@@ -11,7 +11,7 @@ void Controller::draw() const{
     for (int i = 0; i < nbParticules; i++) {
         float x, y;
         model_.getParticlePosition(i, x, y);
-        const int radius = model_.getParticleRadius() * ZOOM_FACTOR;
+        const float radius = model_.getParticleRadius() * ZOOM_FACTOR;
         vue_.drawParticule(x, y, radius, 255, 255, 255, 255);
     }
     vue_.Render();

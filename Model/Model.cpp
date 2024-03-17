@@ -12,6 +12,6 @@ void Model::getParticlePosition(const int index, float &x, float &y) const {
     world_.getParticlePosition(index, x, y);
 }
 
-int Model::getParticleRadius() const {
+float Model::getParticleRadius() const {
     return world_.getParticleRadius();
 }

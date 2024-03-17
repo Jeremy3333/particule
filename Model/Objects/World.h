@@ -14,12 +14,12 @@ public:
     World();
     [[nodiscard]] int getParticleCount() const;
     void getParticlePosition(int index, float &x, float &y) const;
-    [[nodiscard]] int getParticleRadius() const;
+    [[nodiscard]] float getParticleRadius() const;
 private:
     int width_;
     int height_;
 
-    int particleRadius_;
+    float particleRadius_;
 
     std::vector<Particle> particles_;
 };
