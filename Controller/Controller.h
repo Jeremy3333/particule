@@ -10,6 +10,10 @@
 
 
 class Controller {
+public:
+    // update the vue using the model
+    void draw() const;
+private:
     Model model_;
     Vue vue_;
 };
