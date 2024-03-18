@@ -12,6 +12,9 @@
 class World {
 public:
     World();
+
+    void update();
+
     [[nodiscard]] int getParticleCount() const;
     void getParticlePosition(int index, float &x, float &y) const;
     [[nodiscard]] float getParticleRadius() const;

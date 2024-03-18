@@ -7,6 +7,11 @@
 
 Model::Model(Controller *controller) : controller_(controller) {}
 
+void Model::update() {
+    world_.update();
+}
+
+
 int Model::getParticleCount() const {
     return world_.getParticleCount();
 }

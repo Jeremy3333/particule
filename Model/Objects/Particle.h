@@ -11,8 +11,12 @@ class Particle {
 public:
     Particle(float x, float y);
     [[nodiscard]] Vector2f getPosition() const;
+
+    void accelerate(const Vector2f &acceleration);
+    void update();
 private:
     Vector2f position_;
+    Vector2f velocity_;
 };
 
 

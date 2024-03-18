@@ -13,6 +13,10 @@ public:
     Vector2f(float x, float y);
     float x;
     float y;
+
+    Vector2f operator+=(const Vector2f &rhs);
+    Vector2f operator*(int x) const;
+    Vector2f operator*(float x) const;
 };
 
 

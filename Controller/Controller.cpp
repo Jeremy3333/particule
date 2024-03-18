@@ -8,6 +8,7 @@ Controller::Controller() : model_(this), vue_(this), running_(true) {}
 
 void Controller::loop() {
     while (running_) {
+        model_.update();
         vue_.input();
         vue_.draw();
         vue_.waitFrame();
