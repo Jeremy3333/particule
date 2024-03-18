@@ -6,8 +6,9 @@
 
 #include "Vue.h"
 #include "SDL_const.h"
+#include "../Controller/Controller.h"
 
-Vue::Vue(){
+Vue::Vue(Controller *controller) : controller_(controller) {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
         exit(SDL_EXIT_ERROR);
@@ -31,6 +32,19 @@ Vue::~Vue() {
     SDL_DestroyWindow(sdl_window_);
     SDL_Quit();
 }
+
+void Vue::draw() const{
+    drawBackground(0, 0, 0, 255);
+    const int nbParticules = controller_->getParticleCount();
+    for (int i = 0; i < nbParticules; i++) {
+        float x, y;
+        controller_->getParticlePosition(i, x, y);
+        const float radius = controller_->getParticleRadius() * ZOOM_FACTOR;
+        drawParticule(x, y, radius, 255, 255, 255, 255);
+    }
+    Render();
+}
+
 
 void Vue::drawBackground(const int r, const int g, const int b, const int a) const {
     SDL_SetRenderDrawColor(sdl_renderer_, r, g, b, a);

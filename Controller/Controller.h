@@ -11,8 +11,13 @@
 
 class Controller {
 public:
-    // update the vue using the model
-    void draw() const;
+    Controller();
+
+    void loop();
+
+    [[nodiscard]] int getParticleCount() const;
+    void getParticlePosition(int i, float &x, float &y) const;
+    [[nodiscard]] float getParticleRadius() const;
 private:
     Model model_;
     Vue vue_;

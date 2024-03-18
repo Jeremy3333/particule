@@ -3,6 +3,9 @@
 //
 
 #include "Model.h"
+#include "../Controller/Controller.h"
+
+Model::Model(Controller *controller) : controller_(controller) {}
 
 int Model::getParticleCount() const {
     return world_.getParticleCount();

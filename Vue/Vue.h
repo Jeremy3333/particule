@@ -7,17 +7,22 @@
 
 #include <SDL2/SDL.h>
 
+class Controller;
+
 class Vue {
 public:
-    Vue();
+    explicit Vue(Controller *controller);
     ~Vue();
+
+    void draw() const;
+private:
+    SDL_Window* sdl_window_;
+    SDL_Renderer* sdl_renderer_;
+    Controller* controller_;
 
     void drawBackground(int r, int g, int b, int a) const;
     void drawParticule(float x, float y, float radius, int r, int g, int b, int a) const;
     void Render() const;
-private:
-    SDL_Window* sdl_window_;
-    SDL_Renderer* sdl_renderer_;
 
     void fillCircle(float x, float y, float r) const;
 };

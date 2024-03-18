@@ -2,8 +2,8 @@
 #include <unistd.h>
 
 int main() {
-    const Controller controller;
-    controller.draw();
+    Controller controller;
+    controller.loop();
     sleep(5);
     return 0;
 }
