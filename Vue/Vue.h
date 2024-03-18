@@ -14,10 +14,13 @@ public:
     explicit Vue(Controller *controller);
     ~Vue();
 
+    void input() const;
     void draw() const;
+    void waitFrame();
 private:
     SDL_Window* sdl_window_;
     SDL_Renderer* sdl_renderer_;
+    int lastFrameTime_;
     Controller* controller_;
 
     void drawBackground(int r, int g, int b, int a) const;

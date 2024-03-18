@@ -8,7 +8,7 @@
 #include "SDL_const.h"
 #include "../Controller/Controller.h"
 
-Vue::Vue(Controller *controller) : controller_(controller) {
+Vue::Vue(Controller *controller) : controller_(controller), lastFrameTime_(0) {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
         exit(SDL_EXIT_ERROR);
@@ -33,6 +33,16 @@ Vue::~Vue() {
     SDL_Quit();
 }
 
+void Vue::input() const {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_QUIT) {
+            controller_->stopRunning();
+        }
+    }
+}
+
+
 void Vue::draw() const{
     drawBackground(0, 0, 0, 255);
     const int nbParticules = controller_->getParticleCount();
@@ -45,6 +55,13 @@ void Vue::draw() const{
     Render();
 }
 
+void Vue::waitFrame() {
+    const int currentTime = static_cast<int>(SDL_GetTicks());
+    if (const int timeToWait = SDL_FRAME_TIME - (currentTime - lastFrameTime_); timeToWait > 0) {
+        SDL_Delay(static_cast<Uint32>(timeToWait));
+    }
+    lastFrameTime_ = currentTime;
+}
 
 void Vue::drawBackground(const int r, const int g, const int b, const int a) const {
     SDL_SetRenderDrawColor(sdl_renderer_, r, g, b, a);

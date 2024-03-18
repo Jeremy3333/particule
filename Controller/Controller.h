@@ -14,6 +14,7 @@ public:
     Controller();
 
     void loop();
+    void stopRunning();
 
     [[nodiscard]] int getParticleCount() const;
     void getParticlePosition(int i, float &x, float &y) const;
@@ -21,6 +22,8 @@ public:
 private:
     Model model_;
     Vue vue_;
+
+    bool running_;
 };
 
 

@@ -3,13 +3,19 @@
 //
 
 #include "Controller.h"
-#include <unistd.h>
 
-Controller::Controller() : model_(this), vue_(this) {}
+Controller::Controller() : model_(this), vue_(this), running_(true) {}
 
 void Controller::loop() {
-    vue_.draw();
-    sleep(5);
+    while (running_) {
+        vue_.input();
+        vue_.draw();
+        vue_.waitFrame();
+    }
+}
+
+void Controller::stopRunning() {
+    running_ = false;
 }
 
 int Controller::getParticleCount() const {
