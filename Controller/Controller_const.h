@@ -10,5 +10,6 @@
 #define ZOOM_FACTOR 1
 
 #define TIME_PER_FRAME 16
+#define FIXED_TIME_STEP 0.016f
 
 #endif //CONTROLLER_CONST_H

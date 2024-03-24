@@ -6,12 +6,12 @@
 #include "../Model_const.h"
 
 World::World(): width_(WORLD_WIDTH), height_(WORLD_HEIGHT), particleRadius_(PARTICLE_RADIUS) {
- particles_.emplace_back(width_/2, height_/2);
+ particles_.emplace_back((width_/2)+500, height_/2);
 }
 
 void World::update() {
     for (auto &particle : particles_) {
-        particle.accelerate(Vector2f(0, 9.81));
+        particle.accelerate(Vector2f(0, 98.1));
         particle.update();
     }
 }

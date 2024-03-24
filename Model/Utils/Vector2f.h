@@ -14,7 +14,11 @@ public:
     float x;
     float y;
 
+    [[nodiscard]] float length() const;
+
     Vector2f operator+=(const Vector2f &rhs);
+    Vector2f operator+(const Vector2f &rhs) const;
+    Vector2f operator-(const Vector2f &rhs) const;
     Vector2f operator*(int x) const;
     Vector2f operator*(float x) const;
 };

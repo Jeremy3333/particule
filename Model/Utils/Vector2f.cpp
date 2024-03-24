@@ -4,14 +4,28 @@
 
 #include "Vector2f.h"
 
+#include <cmath>
+
 Vector2f::Vector2f(): x(0), y(0) {}
 
 Vector2f::Vector2f(const float x, const float y): x(x), y(y) {}
+
+float Vector2f::length() const {
+    return std::sqrt(x * x + y * y);
+}
 
 Vector2f Vector2f::operator+=(const Vector2f &rhs) {
     x += rhs.x;
     y += rhs.y;
     return *this;
+}
+
+Vector2f Vector2f::operator+(const Vector2f &rhs) const {
+    return {x + rhs.x, y + rhs.y};
+}
+
+Vector2f Vector2f::operator-(const Vector2f &rhs) const {
+    return {x - rhs.x, y - rhs.y};
 }
 
 Vector2f Vector2f::operator*(const int x) const {

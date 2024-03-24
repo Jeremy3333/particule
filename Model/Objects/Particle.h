@@ -17,6 +17,8 @@ public:
 private:
     Vector2f position_;
     Vector2f velocity_;
+
+    void applyConstraint();
 };
 
 
