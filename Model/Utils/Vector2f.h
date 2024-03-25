@@ -21,6 +21,7 @@ public:
     Vector2f operator-(const Vector2f &rhs) const;
     Vector2f operator*(int x) const;
     Vector2f operator*(float x) const;
+    Vector2f operator/(float x) const;
 };
 
 

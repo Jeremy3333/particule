@@ -44,6 +44,8 @@ void Vue::input() const {
 
 
 void Vue::draw() const{
+    // display title + fps
+    SDL_SetWindowTitle(sdl_window_, (SDL_WINDOW_TITLE " - " + std::to_string(fps) + " fps").c_str());
     drawBackground(0, 0, 0, 255);
     const int nbParticules = controller_->getParticleCount();
     for (int i = 0; i < nbParticules; i++) {
@@ -60,6 +62,7 @@ void Vue::waitFrame() {
     if (const int timeToWait = SDL_FRAME_TIME - (currentTime - lastFrameTime_); timeToWait > 0) {
         SDL_Delay(static_cast<Uint32>(timeToWait));
     }
+    fps = 1000.0f / (static_cast<int>(SDL_GetTicks()) - lastFrameTime_);
     lastFrameTime_ = currentTime;
 }
 

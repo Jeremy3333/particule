@@ -23,12 +23,18 @@ private:
     float height_;
 
     float particleRadius_;
+    float particle_time;
+
 
     std::vector<Particle> particles_;
+
+    void newParticle(float x, float y);
 
     void applyGravity();
     void applyConstraints();
     void updatePositions();
+
+    void solveCollisions();
 };
 
 

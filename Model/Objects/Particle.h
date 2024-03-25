@@ -11,6 +11,7 @@ class Particle {
 public:
     Particle(float x, float y);
     [[nodiscard]] Vector2f getPosition() const;
+    void setPosition(const Vector2f &position);
 
     void accelerate(const Vector2f &acceleration);
     void applyConstraint();

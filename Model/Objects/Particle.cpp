@@ -12,6 +12,10 @@ Vector2f Particle::getPosition() const {
     return position_current_;
 }
 
+void Particle::setPosition(const Vector2f &position) {
+    position_current_ = position;
+}
+
 void Particle::applyConstraint() {
     const Vector2f position(static_cast<float>(WORLD_WIDTH) / 2.0f, static_cast<float>(WORLD_HEIGHT) / 2.0f);
     const float radius = WORLD_HEIGHT / 2.0f;

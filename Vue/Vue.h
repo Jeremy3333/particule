@@ -21,6 +21,7 @@ private:
     SDL_Window* sdl_window_;
     SDL_Renderer* sdl_renderer_;
     int lastFrameTime_;
+    float fps;
     Controller* controller_;
 
     void drawBackground(int r, int g, int b, int a) const;

@@ -35,3 +35,7 @@ Vector2f Vector2f::operator*(const int x) const {
 Vector2f Vector2f::operator*(float x) const {
     return {this->x * x, this->y * x};
 }
+
+Vector2f Vector2f::operator/(float x) const {
+    return {this->x / static_cast<float>(x), this->y / static_cast<float>(x)};
+}
