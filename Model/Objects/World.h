@@ -19,12 +19,16 @@ public:
     void getParticlePosition(int index, float &x, float &y) const;
     [[nodiscard]] float getParticleRadius() const;
 private:
-    int width_;
-    int height_;
+    float width_;
+    float height_;
 
     float particleRadius_;
 
     std::vector<Particle> particles_;
+
+    void applyGravity();
+    void applyConstraints();
+    void updatePositions();
 };
 
 

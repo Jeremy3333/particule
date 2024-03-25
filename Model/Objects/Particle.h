@@ -13,12 +13,12 @@ public:
     [[nodiscard]] Vector2f getPosition() const;
 
     void accelerate(const Vector2f &acceleration);
+    void applyConstraint();
     void update();
 private:
-    Vector2f position_;
-    Vector2f velocity_;
-
-    void applyConstraint();
+    Vector2f position_current_;
+    Vector2f position_old_;
+    Vector2f acceleration_;
 };
 
 

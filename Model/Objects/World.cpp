@@ -3,17 +3,21 @@
 //
 
 #include "World.h"
+
+#include <iostream>
+
 #include "../Model_const.h"
 
 World::World(): width_(WORLD_WIDTH), height_(WORLD_HEIGHT), particleRadius_(PARTICLE_RADIUS) {
- particles_.emplace_back((width_/2)+500, height_/2);
+    float y = height_/2.0f;
+    float x = (width_/2.0f)+y;
+    particles_.emplace_back(x, y);
 }
 
 void World::update() {
-    for (auto &particle : particles_) {
-        particle.accelerate(Vector2f(0, 98.1));
-        particle.update();
-    }
+    applyGravity();
+    applyConstraints();
+    updatePositions();
 }
 
 int World::getParticleCount() const {
@@ -28,4 +32,22 @@ void World::getParticlePosition(const int index, float &x, float &y) const {
 
 float World::getParticleRadius() const {
     return particleRadius_;
+}
+
+void World::applyGravity() {
+    for (auto &particle : particles_) {
+        particle.accelerate(Vector2f(0.0f, 1000.0f));
+    }
+}
+
+void World::applyConstraints() {
+    for (auto &particle : particles_) {
+        particle.applyConstraint();
+    }
+}
+
+void World::updatePositions() {
+    for (auto &particle : particles_) {
+        particle.update();
+    }
 }

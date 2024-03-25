@@ -78,6 +78,7 @@ void Vue::Render() const{
 }
 
 void Vue::fillCircle(const float x, const float y, const float r) const {
+    //std::cout << "x: " << x << " y: " << y << std::endl;
     int cx = static_cast<int>(r);
     int cy = 0;
     int radiusError = 1 - cx;
