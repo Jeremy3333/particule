@@ -9,9 +9,10 @@
 
 class Particle {
 public:
-    Particle(float x, float y);
+    Particle(float x, float y, int r, int g, int b, int a);
     [[nodiscard]] Vector2f getPosition() const;
     void setPosition(const Vector2f &position);
+    void getRGB(int &r, int &g, int &b, int &a) const;
 
     void accelerate(const Vector2f &acceleration);
     void applyConstraint();
@@ -20,6 +21,8 @@ private:
     Vector2f position_current_;
     Vector2f position_old_;
     Vector2f acceleration_;
+
+    int r_, g_, b_, a_;
 };
 
 

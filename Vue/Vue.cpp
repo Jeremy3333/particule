@@ -36,7 +36,7 @@ Vue::~Vue() {
 void Vue::input() const {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
+        if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)) {
             controller_->stopRunning();
         }
     }
@@ -52,7 +52,9 @@ void Vue::draw() const{
         float x, y;
         controller_->getParticlePosition(i, x, y);
         const float radius = controller_->getParticleRadius() * ZOOM_FACTOR;
-        drawParticule(x, y, radius, 255, 255, 255, 255);
+        int r, g, b, a;
+        controller_->getParticleRGB(i, r, g, b, a);
+        drawParticule(x, y, radius, r, g, b, a);
     }
     Render();
 }

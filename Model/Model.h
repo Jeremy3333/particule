@@ -17,6 +17,7 @@ public:
 
     [[nodiscard]] int getParticleCount() const;
     void getParticlePosition(int index, float &x, float &y) const;
+    void getParticleRGB(int index, int &r, int &g, int &b, int &a) const;
     [[nodiscard]] float getParticleRadius() const;
 private:
     Controller* controller_;

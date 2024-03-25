@@ -17,6 +17,7 @@ public:
 
     [[nodiscard]] int getParticleCount() const;
     void getParticlePosition(int index, float &x, float &y) const;
+    void getParticleRGB(int index, int &r, int &g, int &b, int &a) const;
     [[nodiscard]] float getParticleRadius() const;
 private:
     float width_;
@@ -28,7 +29,7 @@ private:
 
     std::vector<Particle> particles_;
 
-    void newParticle(float x, float y);
+    void newParticle(float x, float y, int r, int g, int b, int a);
 
     void applyGravity();
     void applyConstraints();

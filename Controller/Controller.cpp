@@ -27,6 +27,11 @@ void Controller::getParticlePosition(const int i, float &x, float &y) const {
     model_.getParticlePosition(i, x, y);
 }
 
+void Controller::getParticleRGB(int i, int &r, int &g, int &b, int &a) const {
+    model_.getParticleRGB(i, r, g, b, a);
+}
+
+
 float Controller::getParticleRadius() const {
     return model_.getParticleRadius();
 }

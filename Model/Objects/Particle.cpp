@@ -6,7 +6,8 @@
 
 #include "../Model_const.h"
 
-Particle::Particle(const float x,const float y): position_current_(x, y), position_old_(x, y) {}
+ Particle::Particle(float x, float y, int r, int g, int b, int a) : position_current_(x, y), position_old_(x, y), acceleration_(0, 0), r_(r), g_(g), b_(b), a_(a) {}
+
 
 Vector2f Particle::getPosition() const {
     return position_current_;
@@ -15,6 +16,14 @@ Vector2f Particle::getPosition() const {
 void Particle::setPosition(const Vector2f &position) {
     position_current_ = position;
 }
+
+void Particle::getRGB(int &r, int &g, int &b, int &a) const {
+    r = r_;
+    g = g_;
+    b = b_;
+    a = a_;
+ }
+
 
 void Particle::applyConstraint() {
     const Vector2f position(static_cast<float>(WORLD_WIDTH) / 2.0f, static_cast<float>(WORLD_HEIGHT) / 2.0f);

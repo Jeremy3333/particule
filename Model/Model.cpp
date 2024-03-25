@@ -20,6 +20,11 @@ void Model::getParticlePosition(const int index, float &x, float &y) const {
     world_.getParticlePosition(index, x, y);
 }
 
+void Model::getParticleRGB(int index, int &r, int &g, int &b, int &a) const {
+    world_.getParticleRGB(index, r, g, b, a);
+}
+
+
 float Model::getParticleRadius() const {
     return world_.getParticleRadius();
 }
