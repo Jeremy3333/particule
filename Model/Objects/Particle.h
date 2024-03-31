@@ -16,7 +16,7 @@ public:
 
     void accelerate(const Vector2f &acceleration);
     void applyConstraint();
-    void update();
+    void update(float dt);
 private:
     Vector2f position_current_;
     Vector2f position_old_;

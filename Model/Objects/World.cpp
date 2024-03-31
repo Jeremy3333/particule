@@ -10,16 +10,6 @@
 #include "../Model_const.h"
 
 World::World(): width_(WORLD_WIDTH), height_(WORLD_HEIGHT), particleRadius_(PARTICLE_RADIUS), particle_time(0.0f) {
-    float y = height_/2.0f;
-    float x = (width_/2.0f) - 150.0f;
-    // random color
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 255);
-    int r = dis(gen);
-    int g = dis(gen);
-    int b = dis(gen);
-    //particles_.emplace_back(x, y, 0, 0, 255, 255);
 }
 void HsvToRgb(float h, float s, float v, int& r, int& g, int& b) {
     int i;
@@ -71,31 +61,36 @@ void HsvToRgb(float h, float s, float v, int& r, int& g, int& b) {
     }
 }
 
+void rainbow(float maxParticles, float size, int &r, int &g, int &b) {
+    float ratio = size / maxParticles;
+    float hue = ratio * 360.0f;  // Map ratio to hue angle (0-360)
+
+    HsvToRgb(hue, 1.0f, 1.0f, r, g, b);
+}
+
 void World::update() {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 255);
-    constexpr float maxParticles = 570;
-    if(particle_time > 0.01f && static_cast<float>(particles_.size()) < maxParticles){
+    const uint32_t sub_steps = 8;
+    const float dt = FIXED_TIME_STEP / static_cast<float>(sub_steps);
+    constexpr float maxParticles = 500;
+    for(uint32_t i(sub_steps); i--;){
+    if(particle_time > 0.5 && static_cast<float>(particles_.size()) < maxParticles){
         particle_time = 0.0f;
         float y = height_/2.0f;
-        float x = (width_/2.0f) + 150.0f;// Usage
-        float ratio = static_cast<float>(particles_.size()) / maxParticles;
-        float hue = ratio * 360.0f;  // Map ratio to hue angle (0-360)
-
+        float x = (width_/2.0f);
         int r, g, b;
-        HsvToRgb(hue, 1.0f, 1.0f, r, g, b);
+        rainbow(maxParticles, static_cast<float>(particles_.size()), r, g, b);
 
         particles_.emplace_back(x, y, r, g, b, 255);
     }
     else {
-        particle_time += FIXED_TIME_STEP;
+        particle_time += dt;
     }
 
     applyGravity();
     applyConstraints();
     solveCollisions();
-    updatePositions();
+    updatePositions(dt);
+    }
 }
 
 int World::getParticleCount() const {
@@ -124,7 +119,7 @@ void World::newParticle(float x, float y, int r, int g, int b, int a) {
 
 void World::applyGravity() {
     for (auto &particle : particles_) {
-        particle.accelerate(Vector2f(0.0f, 100.0f));
+        particle.accelerate(Vector2f(0.0f, 1000.0f));
     }
 }
 
@@ -134,9 +129,9 @@ void World::applyConstraints() {
     }
 }
 
-void World::updatePositions() {
+void World::updatePositions(float dt) {
     for (auto &particle : particles_) {
-        particle.update();
+        particle.update(dt);
     }
 }
 void World::solveCollisions() {

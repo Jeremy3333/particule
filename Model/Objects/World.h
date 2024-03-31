@@ -33,7 +33,7 @@ private:
 
     void applyGravity();
     void applyConstraints();
-    void updatePositions();
+    void updatePositions(float dt);
 
     void solveCollisions();
 };

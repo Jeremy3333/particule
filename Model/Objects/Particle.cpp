@@ -6,7 +6,7 @@
 
 #include "../Model_const.h"
 
- Particle::Particle(float x, float y, int r, int g, int b, int a) : position_current_(x, y), position_old_(x, y), acceleration_(0, 0), r_(r), g_(g), b_(b), a_(a) {}
+ Particle::Particle(float x, float y, int r, int g, int b, int a) : position_current_(x, y), position_old_(x+0.1f, y+0.1f), acceleration_(0, 0), r_(r), g_(g), b_(b), a_(a) {}
 
 
 Vector2f Particle::getPosition() const {
@@ -38,10 +38,10 @@ void Particle::applyConstraint() {
     }
 }
 
-void Particle::update() {
+void Particle::update(float dt) {
     Vector2f velocity = position_current_ - position_old_;
     position_old_ = position_current_;
-    position_current_ = position_current_ + velocity + acceleration_ * FIXED_TIME_STEP * FIXED_TIME_STEP;
+    position_current_ = position_current_ + velocity + acceleration_ * dt * dt;
     acceleration_ = Vector2f(0, 0);
 }
 
